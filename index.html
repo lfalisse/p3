@@ -3,16 +3,20 @@
 <head>
 	<title></title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style>
+img{
+	width:51%;
+}
+</style>
 </head>
 <body>
 <div id=text>
-	<div id=months></div>
-	<!-- <div id=years></div> -->
-	<div id=locations>
-	</div>
-	<div id=largeloc></div>
-	<div id=awareness></div>
-	<div id=subjects></div>
+	<div id=type></div>
+	<div id=title></div>
+	<div id=photographer></div>
+	<div id=fate></div>
+	<div id=location></div>
+	<div id=file></div>
 </div>
 <div id=images>
 
@@ -33,45 +37,41 @@ urlParams.getAll('id'); // ["1234"]
 urlParams.toString();   // type=product&id=1234
 
 // console.log(urlParams.toString('month'))
-console.log(urlParams.get('type'))
+// console.log(urlParams.get('type'))
 
 function buildPage(data) {
 	var array = data;
 
-	// console.log(array);
-	
-	var arr = array.filter(function(el){ 
-		return el.type == urlParams.get('type')
-	});
-
-	console.log(arr);
-
-// 	for(var i = 0; i < arr.length; i = i + 1){
-// 		var month = document.createElement("p");
-// 		var year = document.createElement("p");
-// 		var largeloc = document.createElement("p");
-// 		var loc = document.createElement("p");
-// 		loc.setAttribute("id", "loc");
-// 		var aware = document.createElement("p");
-// 		var subjamt = document.createElement("p");
-// 		var img = document.createElement("img");
+	console.log(array);
+	var container = document.createElement("div");
+	container.setAttribute("class", "container");
+	document.body.appendChild(container)
+	for(var i = 0; i < array.length; i = i + 1){
+		var type = document.createElement("p");
+		var title = document.createElement("p");
+		var photographer = document.createElement("p");
+		var fate = document.createElement("p");
+		// loc.setAttribute("id", "loc");
+		var location = document.createElement("p");
+		var file = document.createElement("img");
+		var imgsrc = array[i].file
 		
-// 		document.getElementById("months").appendChild(month);
-// 		document.getElementById("largeloc").appendChild(largeloc);
-// 		document.getElementById("locations").appendChild(loc);
-// 		document.getElementById("awareness").appendChild(aware);
-// 		document.getElementById("subjects").appendChild(subjamt);
-// 		var imgsrc = arr[i].image;
-// 		month.innerHTML = arr[i].month +" " + arr[i].year +""+ '<img src="images/' + imgsrc + ' ">';
-// 		year.innerHTML = arr[i].year;
-// 		largeloc.innerHTML = arr[i].largeloc +""+ '<img src="images/' + imgsrc + ' ">';
-// 		aware.innerHTML = arr[i].awareness +""+ '<img src="images/' + imgsrc + ' ">';
-// 		subjamt.innerHTML = arr[i].subjectamt +""+ '<img src="images/' + imgsrc + ' ">';
-// 		loc.innerHTML = arr[i].location +""+ '<img src="images/' + imgsrc + ' ">';
-// 	// 	$(this).mouseover(function(){
-// 	// 		this.html = '<img src="images/' + imgsrc + ' " display="block">';
-// 	// });
-// };
+		container.appendChild(type);
+		container.appendChild(title);
+		container.appendChild(photographer);
+		container.appendChild(fate);
+		container.appendChild(location);
+		container.appendChild(file);
+		type.innerHTML = array[i].type;
+		title.innerHTML = array[i].title;
+		photographer.innerHTML = array[i].photographer;
+		fate.innerHTML = array[i].fate;
+		location.innerHTML = array[i].location;
+		file.src = "images/" + imgsrc + '.jpg';
+	// 	$(this).mouseover(function(){
+	// 		this.html = '<img src="images/' + imgsrc + ' " display="block">';
+	// });
+};
 }
 </script>
 </body>
