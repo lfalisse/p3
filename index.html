@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>furniture</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src=bindery.min.js></script>
 <style>
 img{
-	width:51%;
+	height:100%;
+}
+#blank{
+	color:white;
 }
 </style>
 </head>
 <body>
-<div id=text>
-	<div id=type></div>
+<div id=content>
+	<h1 id=blank>hello</h1>
+<!-- 	<div id=type></div>
 	<div id=title></div>
 	<div id=photographer></div>
 	<div id=fate></div>
 	<div id=location></div>
-	<div id=file></div>
+	<div id=file></div> -->
 </div>
-<div id=images>
+<!-- <div id=images> -->
 
 </div>
 <script>
@@ -43,27 +48,29 @@ function buildPage(data) {
 	var array = data;
 
 	console.log(array);
-	var container = document.createElement("div");
-	container.setAttribute("class", "container");
-	document.body.appendChild(container)
 	for(var i = 0; i < array.length; i = i + 1){
+		var content = document.getElementById('content');
+		var container = document.createElement("div");
+	container.setAttribute("class", "container");
+		content.appendChild(container)
+		var title = document.createElement("h1");
 		var type = document.createElement("p");
-		var title = document.createElement("p");
 		var photographer = document.createElement("p");
 		var fate = document.createElement("p");
 		// loc.setAttribute("id", "loc");
 		var location = document.createElement("p");
 		var file = document.createElement("img");
-		var imgsrc = array[i].file
+		var imgsrc = array[i].file;
 		
-		container.appendChild(type);
+		container.appendChild(file);
 		container.appendChild(title);
+		container.appendChild(type);
 		container.appendChild(photographer);
 		container.appendChild(fate);
 		container.appendChild(location);
-		container.appendChild(file);
-		type.innerHTML = array[i].type;
+		
 		title.innerHTML = array[i].title;
+		type.innerHTML = array[i].type;
 		photographer.innerHTML = array[i].photographer;
 		fate.innerHTML = array[i].fate;
 		location.innerHTML = array[i].location;
@@ -73,6 +80,26 @@ function buildPage(data) {
 	// });
 };
 }
+$(function() {
+      setTimeout(function() {
+        Bindery.makeBook({
+	content:'#content',
+	// options
+	rules: [
+	Bindery.PageBreak({
+	selector:'h1', 
+	position:'before'
+	}),
+
+	Bindery.FullBleedPage({
+  	selector: 'img',
+ 	continue: 'same'
+	}),
+	]
+})          
+            }, 1000);
+});
+
 </script>
 </body>
 </html>
