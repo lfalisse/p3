@@ -11,6 +11,13 @@ img{
 #blank{
 	color:white;
 }
+h1{
+	text-align: justify;
+  	text-justify: inter-word;
+}
+p{
+	text-align:center;	
+}
 </style>
 </head>
 <body>
@@ -63,11 +70,11 @@ function buildPage(data) {
 		var imgsrc = array[i].file;
 		
 		container.appendChild(file);
-		container.appendChild(title);
 		container.appendChild(type);
 		container.appendChild(photographer);
 		container.appendChild(fate);
 		container.appendChild(location);
+		container.appendChild(title);
 		
 		title.innerHTML = array[i].title;
 		type.innerHTML = array[i].type;
