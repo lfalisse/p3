@@ -4,19 +4,38 @@
 	<title>furniture</title>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src=bindery.min.js></script>
+	<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,700;1,400&family=EB+Garamond:wght@400;600&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+body{
+	background-color: #d8d8d8;
+}
+.📖-page{
+	background-image: url("images/noise.png");
+}
+#content{
+	/*background-image: url("images/noise.png");*/
+}
 img{
 	height:100%;
 }
 #blank{
-	color:white;
+	visibility: hidden;
 }
-h1{
-	text-align: justify;
-  	text-justify: inter-word;
+.title{
+	text-align: left;
+	font-family: 'EB Garamond', serif;
+	font-weight: 400;
+	font-size: 225%;
 }
 p{
-	text-align:center;	
+	font-family: 'Arimo', sans-serif;
+	font-weight: 400;
+	text-align: left;
+    margin-top: -2%;
+    font-size: 50%;
+}
+.type{
+	font-style: italic;
 }
 </style>
 </head>
@@ -58,10 +77,13 @@ function buildPage(data) {
 	for(var i = 0; i < array.length; i = i + 1){
 		var content = document.getElementById('content');
 		var container = document.createElement("div");
+		var br = document.createElement("br");
 	container.setAttribute("class", "container");
 		content.appendChild(container)
-		var title = document.createElement("h1");
+		var title = document.createElement("p");
+	title.setAttribute("class", "title");
 		var type = document.createElement("p");
+	type.setAttribute("class", "type");
 		var photographer = document.createElement("p");
 		var fate = document.createElement("p");
 		// loc.setAttribute("id", "loc");
@@ -74,6 +96,7 @@ function buildPage(data) {
 		container.appendChild(photographer);
 		container.appendChild(fate);
 		container.appendChild(location);
+		container.appendChild(br);
 		container.appendChild(title);
 		
 		title.innerHTML = array[i].title;
@@ -94,7 +117,7 @@ $(function() {
 	// options
 	rules: [
 	Bindery.PageBreak({
-	selector:'h1', 
+	selector:'.type', 
 	position:'before'
 	}),
 
